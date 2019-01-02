@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>page1</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/page1/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/page1/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+  </head>
+  <body>
+  <script type="text/javascript">  
+                    // var img=[];
+                    var img= new Array(19);
+                    var bx;
+                    var by;
+                    var overBox = false;
+                    var locked = false;
+                    var xOffset = 0.00; 
+                    var yOffset = 0.00; 
+                    var x= new Array(19);
+                    var y= new Array(19);
+                    var n;
+
+
+                    // function preload() {
+                    //   for(var i=1; i<=8; i++) {
+                    //     fname = 'images/' + i + '_1.jpg';  
+                    //     img[i-1] = loadImage(fname);
+                        
+                        
+                    //     fname = 'images/' + i + '_2.jpg';
+                    //     img[i+7] = loadImage(fname);
+                    //   }
+                    // }
+
+
+                    function preload() {
+                      for(var i=0; i<img.length; i++) {
+                        if (i%2 == 0 && i%3 != 0 && i%11 !=0){
+                          img[i]=loadImage("images/cb.jpg");
+                        }
+                       else if (i%2 !=0 && i%3 ==0 && i%11 !=0){
+                          img[i]=loadImage("images/cbb.jpg");
+                       }
+                       else if (i%2 !=0 && i%3 !=0 && i%11 ==0){
+                         img[i]=loadImage("images/postit.png");
+                      }
+                      else{
+                        img[i]=loadImage("images/avatar_default.jpg");
+                      }
+                    }
+                    }
+
+                    function setup() {
+                          createCanvas(800, 400);
+
+                          bx = self.width/3;
+                          by = self.height/3;
+
+                      for(var i=0; i<img.length; i++) {
+                        
+                          x[i]=0+i*random(100);
+                          y[i]=70+i*random(100);
+                      }
+
+                      //   for(var i=0; i<img.length; i++) {
+                        
+                      //     xOffset[i]=0.00;
+                      //     yOffset[i]=0.00;
+                      // }
+
+                          strokeWeight(5);
+                          button = createButton('Grid');
+                          button.position( windowWidth-100,windowHeight-100);
+                          button.size(60,25);
+                          button.mousePressed(arraygrid);
+
+                          button = createButton('random');
+                          button.position( windowWidth-180,windowHeight-100);
+                          button.size(70,25);
+                          button.mousePressed(randoma);
+
+                    }
+
+                    function randoma(){
+                            bx = width/3;
+                          by = height/3;
+
+                      for(var i=0; i<img.length; i++) {
+                        
+                          x[i]=0+i*random(100);
+                          y[i]=70+i*random(100);
+                      }
+                    }
+
+
+                    function draw() {
+                      
+                    // Displays the image at point (0, height/2) at half size
+
+                     
+
+                      // Draw the pic
+                      
+                      for(var i=0; i<img.length; i++) {
+                        
+                       image(img[i], x[i],y[i], bx, by);
+                      }
+
+
+                    // Test if the cursor is over the pic 
+                     
+                     for(var i=0; i<img.length; i++) {
+                      if (mouseX > x[i]-bx && mouseX < x[i]+bx && 
+                          mouseY > y[i]-by&& y[i]+by) {
+
+                         n=i;  
+                       
+
+                        if(!locked) { 
+                          overBox = true;  
+                        
+                        } 
+                      } else {
+                       
+                        overBox = false;
+                      }
+                      }
+                      }
+
+                    function doubleclicked(){
+
+                    }
+
+
+                    function arraygrid(){
+
+                      clear();
+                       for(var i=0; i<img.length; i++) {
+
+                         var arn=Math.floor(windowWidth/bx);
+
+
+                       x[i]=(i-Math.floor(i/arn)*arn)*(bx+20);
+                       y[i]=70+(20+by)*Math.floor(i/arn);
+                      
+                    }
+
+                    }
+
+                    function mousePressed() {
+
+                     
+
+                      if(overBox) { 
+                        locked = true; 
+                        rect(x[n], y[n], bx, by);
+                      } else {
+                        locked = false;
+                      }
+                      xOffset = mouseX-x[n]; 
+                      yOffset = mouseY-y[n]; 
+                    }
+
+
+
+                    function mouseDragged() {
+
+
+                      
+
+                      if(locked) {
+                        clear();
+                        x[n] = mouseX-xOffset; 
+                        y[n] = mouseY-yOffset; 
+                        rect(x[n], y[n], bx, by);
+                      }
+                      }
+
+
+                    function mouseReleased() {
+                      clear();
+                      locked = false;
+                    }
+
+                    function mouseWheel(event) {
+                      clear();
+                      print(event.delta);
+                      //move the square according to the vertical scroll amount
+                      bx *= 1+(event.delta/20);
+                      by *= 1+(event.delta/20);
+
+                      //uncomment to block page scrolling
+                      //return false;
+                    }
+        </script>
+  </body>
+</html>
