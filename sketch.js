@@ -1,3 +1,6 @@
+
+
+
 // Sketch One
     var s = function(p) { 
                 var img= new Array(19);
@@ -10,6 +13,8 @@
                                   var x= new Array(19);
                                   var y= new Array(19);
                                   var n;
+                                  var whx=p.windowWidth;
+                                  var why=0.4575 * p.windowWidth;
               p.preload=function(){
 
                           for(var i=0; i<img.length; i++) {
@@ -29,7 +34,7 @@
                         };
 
               p.setup=function() {
-                  p.createCanvas(p.windowWidth, 0.79 * p.windowHeight);
+                  p.createCanvas(whx,why);
                   
                             bx = img[1].width/10;
                                         by = img[1].height/10;
@@ -42,12 +47,12 @@
                                       }
                                       p.strokeWeight(5);
                                         button = p.createButton('Grid');
-                                        button.position( p.windowWidth-100,20);
+                                        button.position( p.windowWidth-100,why*0.03);
                                         button.size(60,25);
                                         button.mousePressed(p.arraygrid);
 
                                         button = p.createButton('random');
-                                        button.position( p.windowWidth-180,20);
+                                        button.position( p.windowWidth-180,why*0.03);
                                         button.size(70,25);
                                         button.mousePressed(p.randoma);
 
@@ -55,6 +60,14 @@
                                            // Test if the cursor is over the pic                                  
                                     };
 
+
+                 p.doubleClicked=function() {
+                           p.link("p5js.org");
+                 };
+
+                 p.link=function(url, winName, options) {
+                    winName && open(url, winName, options) || (location = url);
+                  };
                 p.randoma=function(){
                   p.clear();
                   
@@ -82,7 +95,7 @@
                                 };
 
               p.mouseWheel=function(event) {
-                if( p.mouseY < 0.79*p.windowHeight && p.mouseY > 0.0728*p.windowHeight) {
+                if( p.mouseY < why && p.mouseY > 0.1*why) {
                   p.clear();
                   
                   p.print(event.delta);
@@ -103,14 +116,14 @@
 
                                     p.fill(255);
                                     p.stroke(255);
-                                 p.rect(0,0,p.windowWidth,0.07*p.windowHeight); 
+                                 p.rect(0,0,whx,0.1*why); 
 
                                  p.fill(155);
                                     p.stroke(155);
-                                 p.rect(0,0.0714*p.windowHeight,p.windowWidth,0.0014*p.windowHeight); 
+                                 p.rect(0,0.1014*why,p.windowWidth,0.0014*why); 
 
 
-                      if ( p.mouseY < 0.79*p.windowHeight && p.mouseY > 0.0728*p.windowHeight) {
+                      if ( p.mouseY < why && p.mouseY > 0.1*why) {
                               if(!locked) { 
                               overBox = true;  
                               } 
@@ -163,81 +176,81 @@
         var myp5 = new p5(s, 'c1');
 
 // Sketch Two
-var t = function( p ) { 
+      var t = function( p ) { 
 
 
 
 
-                    var cx, cy;
-                    var secondsRadius;
-                    var minutesRadius;
-                    var hoursRadius;
-                    var clockDiameter;
+                          var cx, cy;
+                          var secondsRadius;
+                          var minutesRadius;
+                          var hoursRadius;
+                          var clockDiameter;
 
-                    p.setup=function() {
-                      p.createCanvas(p.windowWidth, 195);
-                      p.stroke(255);
+                          p.setup=function() {
+                            p.createCanvas(p.windowWidth, 0.128*p.windowWidth);
+                            p.stroke(255);
+                            
+                            var radius = 50;
+                            secondsRadius = radius * 0.60;
+                            minutesRadius = radius * 0.60;
+                            hoursRadius = radius * 0.40;
+                            clockDiameter = radius * 1.4;
+                            
+                            //center of the clock
+                            cx = 87*p.width / 240;
+                            cy = p.height / 2;
+                          };
+
+                          p.draw=function() {
+                            
+                            //draw calendar
+                              var dx = 2*p.width / 3-30;
+        var dy = p.height / 2-50;
+        var space = 5;
+        var mon=p.month();
+        var day=p.day();
+                    var jahr=p.year();
+                    d = new Date();
+                    let wday=d.getDay();
+                    var dayt;
+
+                    switch (wday) {
+                          case 0:
+                           dayt="Sonn";
+                           break;
+                          case 1:
+                           dayt="Mon";
+                           break;
+                           case 2:
+                           dayt="Dien";
+                           break;
+                           case 3:
+                           dayt="Mitt";
+                           break;
+                           case 4:
+                           dayt="Donn";
+                           break;
+                           case 5:
+                           dayt="Frei";
+                           break;
+                           case 6:
+                           dayt="Sat";
+                           break;
+                         };
+
+                    p.fill(240);
+                    p.strokeWeight(0);
+                    p.rect(dx,dy,120,90);
+                    p.fill(240,0,0);
+                    p.strokeWeight(0);
+                    p.rect(dx,dy,120,10);
+                    p.fill(0);
+                    p.textSize(15);
+                      p.text(day+"/"+mon+"/"+jahr,dx+20,dy+30);
+                      p.textSize(24);
+                      p.text(dayt,dx+20,dy+60);
                       
-                      var radius = 50;
-                      secondsRadius = radius * 0.60;
-                      minutesRadius = radius * 0.60;
-                      hoursRadius = radius * 0.40;
-                      clockDiameter = radius * 1.4;
-                      
-                      //center of the clock
-                      cx = 87*p.width / 240;
-                      cy = p.height / 2;
-                    };
-
-                    p.draw=function() {
-                      
-                      //draw calendar
-                        var dx = 2*p.width / 3-30;
-  var dy = p.height / 2-50;
-  var space = 5;
-  var mon=p.month();
-  var day=p.day();
-var jahr=p.year();
-d = new Date();
-let wday=d.getDay();
-var dayt;
-
-switch (wday) {
-      case 0:
-       dayt="Sonn";
-       break;
-      case 1:
-       dayt="Mon";
-       break;
-       case 2:
-       dayt="Dien";
-       break;
-       case 3:
-       dayt="Mitt";
-       break;
-       case 4:
-       dayt="Donn";
-       break;
-       case 5:
-       dayt="Frei";
-       break;
-       case 6:
-       dayt="Sat";
-       break;
-     };
-
-p.fill(240);
-p.strokeWeight(0);
-p.rect(dx,dy,120,90);
-p.fill(240,0,0);
-p.strokeWeight(0);
-p.rect(dx,dy,120,10);
-p.fill(0);
-p.textSize(15);
-  p.text(day+"/"+mon+"/"+jahr,dx+20,dy+30);
-  p.textSize(24);
-  p.text(dayt,dx+20,dy+60);
-  
 
                       // Draw the clock background
                       p.noStroke();
@@ -278,11 +291,11 @@ p.textSize(15);
 
 
 
-};
+                      };
 
-                    };
+                                          };
 
-var myp5 = new p5(t, 'c2');
+                      var myp5 = new p5(t, 'c2');
 
 
 
