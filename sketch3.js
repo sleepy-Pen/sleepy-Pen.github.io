@@ -17,7 +17,7 @@ var wx;
 function preload() {
   // Get the most recent earthquake in the database
   // var url ='pin.JSON';
-  var url ='../imglist.JSON';
+  var url ='https://sleepy-pen.github.io/imglist.JSON';
   imglist = loadJSON(url,getimg);
 }
 
