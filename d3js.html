@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+   <meta http-equiv="Pragma" content="no-cache" />
+   <meta http-equiv="Expires" content="0" /> 
+    <script src="resources/scripts/jquery-3.3.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
+      body {font-family: "Source Code Pro", Consolas, monaco, monospace; line-height: 160%; font-size: 16px;  margin: 0; }
+      path.link {
+        fill: none;
+        stroke-width: 2px;
+      }
+      .node:not(:hover) .nodetext {
+        display: none;
+      }
+      h1 { font-size: 36px; margin: 10px 0; text-transform: uppercase; font-weight: normal;}
+      h2, h3 { font-size: 18px; margin: 5px 0 ; font-weight: normal;}
+      .header1 {padding: 20px; position: absolute; top: 100; left: 0;}
+      a:link { color: #EE3124; text-decoration: none;}
+      a:visited { color: #EE3124; }
+      a:hover { color: #A4CD39; text-decoration: underline;}
+      a:active { color: #EE3124; }
+    </style>
+</head>    
+
+<body>
+	    <header>
+           <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+          <a class="navbar-brand" href="#">Concept Board</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+           </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="p5js.html">P5JS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="p5js2.html">P5JS2</a>
+              </li>
+              <li class="nav-item  active">
+                <a class="nav-link" href="d3js.html">D3JS <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+          </nav>
+     </header>
+    <div class="header1">
+
+      <h1>Marvel Characters</h1>
+      <h2>Click to view their identity</h2>
+      <h3>And link to their web page!</h3>
+    </div>
+    <!-- container for force layout visualisation  -->
+    <section id="vis"></section> 
+		<script>
+
+				var data = {
+  "name": "A1",
+  "children": [
+    {
+      "name": "B1",
+      "children": [
+        {
+          "name": "C1",
+          "value": 100
+        },
+        {
+          "name": "C2",
+          "value": 300
+        },
+        {
+          "name": "C3",
+          "value": 200
+        }
+      ]
+    },
+    {
+      "name": "B2",
+      "value": 200
+    }
+  ]
+};
+
+var packLayout = d3.pack()
+  .size([300, 300])
+  .padding(10)
+
+var rootNode = d3.hierarchy(data)
+
+rootNode.sum(function(d) {
+  return d.value;
+});
+
+packLayout(rootNode);
+
+var nodes = d3.select('svg g')
+  .selectAll('g')
+  .data(rootNode.descendants())
+  .enter()
+  .append('g')
+  .attr('transform', function(d) {return 'translate(' + [d.x, d.y] + ')'})
+
+nodes
+  .append('circle')
+  .attr('r', function(d) { return d.r; })
+
+nodes
+  .append('text')
+  .attr('dy', 4)
+  .text(function(d) {
+    return d.children === undefined ? d.data.name : '';
+  })
+		</script>
+		<!-- Latest compiled and minified JavaScript -->
+
+</body>
+</html>
+
