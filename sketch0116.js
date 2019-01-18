@@ -31,7 +31,7 @@ var tagfilter;
 function preload() {
   // Get the most recent earthquake in the database
   // var url ='pin.JSON';
-  var url ='../imglist.JSON';
+  var url ='./imglist.JSON';
   imglist = loadJSON(url,getimg);
   font = loadFont('resources/helvetica.ttf');
 }
