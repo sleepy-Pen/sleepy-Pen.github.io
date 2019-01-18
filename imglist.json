@@ -1,4 +1,18 @@
-{"board":
+{  "task":
+	[
+		{"id":"0","name":"idea","status":"0"},
+        {"id":"1","name":"siteplan","status":"0"},
+        {"id":"2","name":"room plan","status":"0"},
+        {"id":"3","name":"floor plan","status":"0"},
+        {"id":"4","name":"elevation","status":"0"},
+        {"id":"5","name":"section","status":"0"},
+        {"id":"6","name":"diagram","status":"0"},
+        {"id":"7","name":"landscape","status":"0"},
+        {"id":"8","name":"modell","status":"0"},
+        {"id":"9","name":"rendering","status":"0"},
+         {"id":"10","name":"interior","status":"0"}
+    ],
+	"board":
 	[
 		{"name":"bd1",
 			"imgj":
@@ -6,26 +20,26 @@
 						{
 							"id":"1",
 							"user_id":"1",
-							"tag":"concept",
-							"imageurl":"images/pin/1.jpg"			
+							"tag":"0",
+							"imageurl":"../images/pin/1.jpg"			
 						},
 						{
 							"id":"2",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/3.jpg"				
+							"tag":"0",
+							"imageurl":"../images/pin/3.jpg"				
 						},
 						{
 							"id":"3",
 							"user_id":"1",
-							"tag":"fassade",
-							"imageurl":"images/pin/2.jpg"			
+							"tag":"4",
+							"imageurl":"../images/pin/2.jpg"			
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"fassade",
-							"imageurl":"images/pin/4.jpg"	
+							"tag":"4",
+							"imageurl":"../images/pin/4.jpg"	
 						}
 					]
 		},
@@ -35,32 +49,32 @@
 						{
 							"id":"1",
 							"user_id":"1",
-							"tag":"concept",
-							"imageurl":"images/pin/10.jpg"			
+							"tag":"0",
+							"imageurl":"../images/pin/10.jpg"			
 						},
 						{
 							"id":"2",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/11.jpg"				
+							"tag":"0",
+							"imageurl":"../images/pin/11.jpg"				
 						},
 						{
 							"id":"3",
 							"user_id":"1",
-							"tag":"stair",
-							"imageurl":"images/pin/7.jpg"			
+							"tag":"10",
+							"imageurl":"../images/pin/7.jpg"			
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"landscape",
-							"imageurl":"images/pin/6.jpg"	
+							"tag":"7",
+							"imageurl":"../images/pin/6.jpg"	
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"fassade",
-							"imageurl":"images/pin/13.jpg"	
+							"tag":"4",
+							"imageurl":"../images/pin/13.jpg"	
 						}
 					]
 		},
@@ -70,44 +84,44 @@
 						{
 							"id":"1",
 							"user_id":"1",
-							"tag":"concept",
-							"imageurl":"images/pin/12.jpg"			
+							"tag":"0",
+							"imageurl":"../images/pin/12.jpg"			
 						},
 						{
 							"id":"2",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/17.jpg"				
+							"tag":"0",
+							"imageurl":"../images/pin/17.jpg"				
 						},
 						{
 							"id":"3",
 							"user_id":"1",
-							"tag":"concept",
-							"imageurl":"images/pin/18.jpg"			
+							"tag":"0",
+							"imageurl":"../images/pin/18.jpg"			
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/19.jpg"	
+							"tag":"0",
+							"imageurl":"../images/pin/19.jpg"	
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/20.jpg"	
+							"tag":"0",
+							"imageurl":"../images/pin/20.jpg"	
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/21.jpg"	
+							"tag":"0",
+							"imageurl":"../images/pin/21.jpg"	
 						},
 						{
 							"id":"4",
 							"user_id":"2",
-							"tag":"concept",
-							"imageurl":"images/pin/24.jpg"	
+							"tag":"0",
+							"imageurl":"../images/pin/24.jpg"	
 						}
 					]
 		}
